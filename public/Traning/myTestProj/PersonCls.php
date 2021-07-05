@@ -48,15 +48,18 @@ class Person {
             return $this->pass;
         }else "error";
     }
-    public function Serialaze():string
-    {
-       // $this->user_id = $user_id;
+    public function MakeForm(){
         $this->toJon[0] = ["User_id" =>$this->getUserId()];
         $this->toJon[1] = ["UserName"=>$this->GetName()];
         $this->toJon[2] = ['Email'=>$this->getUserEmil()];
         $this->toJon[3] = ["Password" =>$this->GetPassHased()];
+        $local = json_encode($this->toJon);
+        return json_decode($local);
+    }
+    public function Serialaze():string
+    {
 
-        return json_encode($this->toJon);
+        return json_encode($this->MakeForm());
 
     }
 
@@ -81,7 +84,8 @@ $Pavel = new Person("Pavel10", "0555555","email@emal",2);
  ($Viorel->GetPassHased() . "\n");
  ($Viorel->getUserEmil() . "\n");
  ($Viorel->makeDB() . "\n");
-
+ print_r($Viorel->MakeForm());
+ echo ($Viorel->Serialaze());
 //print_r($Viorel->Serialaze() . "\n");
 $Pavel->makeDB();
 //print_r($Viorel);
